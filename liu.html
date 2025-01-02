@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>雅韵花事</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            position: relative;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            overflow: hidden;
+            height: 100vh;
+        }
+        .beijin {
+            max-width: 100%;
+            max-height: 100%;
+            height: 100vh;
+            filter: brightness(0.9);
+            z-index: 0;
+        }
+
+        .xinzhi1 {
+            position: absolute;
+            z-index: 2;
+            max-width: 100%;
+            height: 100vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .yinzhang {
+            position: absolute;
+            z-index: 3;
+            max-width: 100%;
+            height: 100vh; /* 这里可以调整为更具体的尺寸，以适应印章大小 */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -110%); /* 初始位置稍微偏上，确保动画开始时有足够的空间下落 */
+            opacity: 0;
+             /* 动画时长1秒，延迟10秒后开始，动画结束后保持最终状态 */
+       }
+	   .yinzhang.animate {
+	       animation: stampDrop 3s forwards;
+	   }
+        @keyframes stampDrop {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -110%) scale(0.8); /* 初始位置稍微偏上且缩小 */
+           }
+           50% {
+                opacity: 0.5; /* 半透明状态，模拟下落过程 */
+            }
+          100% {
+			   opacity: 1;
+			   transform: translate(-50%, -50%) scale(1); /* 最终位置且完全显示 */
+  
+         }
+         }
+        .text-block {
+            position: absolute;
+            writing-mode: vertical-rl; /* 竖排文字，从右到左 */
+            text-orientation: upright; /* 字符保持直立 */
+            font-size: 2.5vh; /* 根据需要设置文字大小 */
+            letter-spacing: 0.25em; 
+            font-family: 'ziti1', sans-serif;
+            z-index: 3; /* 确保文字显示在信纸上方 */
+            opacity: 0;
+            animation: fadeIn 7s forwards;
+        }
+
+        .text1 { top: 15%; right: 13%; animation-delay: 0s; }
+        .text2 { top: 15%; right: 23%; animation-delay: 1s; }
+        .text3 { top: 15%; right: 33%; animation-delay: 2s; }
+        .text4 { top: 15%; right: 43%; animation-delay: 3s; }
+        .text5 { top: 15%; right: 53%; animation-delay: 4s; }
+        .text6 { top: 15%; right: 63%; animation-delay: 5s; }
+        .text7 { top: 55%; right: 83%; animation-delay: 6s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @font-face {
+            font-family: 'ziti1';
+            src: url("字灵倾心体(商用需授权)(1).TTF");
+        }
+        .text{
+			position: absolute;
+			font-size: 2.5vh; /* 根据需要设置文字大小 */
+			font-family: "宋体", sans-serif;
+			font-weight: bold;
+			color: white;
+			z-index: 3; 
+			bottom: 5%;
+			left: 35%;
+			opacity: 0;
+			animation: fadeIn 1s forwards;
+			animation-delay: 7s;
+			cursor: pointer;
+			
+			
+		}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="beijin" src="背景.jpg" alt="背景">
+        <img class="xinzhi1" src="信纸1.png" alt="信纸" >
+            <div class="text-block text1">
+                见字如晤，展信舒颜。
+            </div>
+            <div class="text-block text2">
+                看你似乎對街上的热闹景象感到好奇，
+            </div>
+            <div class="text-block text3">
+                今日正是花朝節，如果你有典趣，
+            </div>
+            <div class="text-block text4">
+                不妨去附近的花窗或市集看看，
+            </div>
+            <div class="text-block text5">
+                那里正在舉行插花比赛和赏花活動，
+            </div>
+            <div class="text-block text6">
+                定能讓你感受到節日的歡樂與春光的美好。
+            </div>
+            <div class="text-block text7">
+                友人敬启
+            </div>
+            <img class="yinzhang" id="yinzhang" src="印章.png" alt="印章" >
+		     <div class="text" id="startGameText" onclick="start()">
+		         点击盖章开始游戏
+		     </div>
+    </div>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#startGameText').click(function() {
+                // 触发印章的动画
+                $('#yinzhang').addClass('animate');
+ 
+                // 隐藏“点击盖章开始游戏”文本
+                $(this).hide();
+ 
+                // 设置延时跳转页面
+                setTimeout(function() {
+                    window.location.href = 'wenzii.html'; // 替换为您想要跳转的目标页面URL
+                }, 4000); // 延时4秒（4000毫秒）后跳转
+            });
+        });
+    </script>
+</body>
+</html>

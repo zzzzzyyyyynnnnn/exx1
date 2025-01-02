@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>雅韵花事</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style type="text/css">
+        /* CSS样式保持不变 */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            position: relative;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            overflow: hidden;
+            height: 100vh;
+        }
+        .beijin {
+            max-width: 100%;
+            max-height: 100%;
+            height: 100vh;
+            filter: brightness(0.5);
+            z-index: 0;
+        }
+        .xinfeng {
+            position: absolute;
+            z-index: 1;
+            max-width: 100%;
+            height: 100vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .xinfeng1 {
+            position: absolute;
+            z-index: 2;
+            max-width: 100%;
+            height: 100vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* 默认隐藏打开的信封 */
+        }
+        .xinzhi {
+            position: absolute;
+            z-index: 1; /* 确保信纸在打开的信封之上 */
+            max-width: 100%;
+            height: 100vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* 默认隐藏信纸 */
+        }
+        .xinzhi1 {
+            position: absolute;
+            z-index: 2; /* 确保信纸在打开的信封之上 */
+            max-width: 100%;
+            height: 100vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* 默认隐藏信纸 */
+        }
+        .click-hint {
+            position: absolute;
+            top: 60%;
+            right: 25%;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
+            border-radius: 50%; /* 圆形 */
+            z-index: 3; /* 确保提示在蝴蝶图片上方 */
+            cursor: pointer;  /* 确保提示不会阻挡点击事件 */
+            animation: fadeInOut 4s infinite forwards; /* 添加淡入淡出动画 */
+        }
+        
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="beijin" src="背景.jpg" alt="背景">
+        <img class="xinfeng" src="信封.png" alt="信封" id="envelope">
+        <img class="xinfeng1" src="信封（开.png" alt="信封（开）" id="openedEnvelope">
+        <img class="xinzhi" src="信纸.png" alt="信纸" id="letterPaper">
+        <div class="click-hint" id="click-hint"></div>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        let clickCount = 0;
+        $('#click-hint').click(function() {
+            clickCount++;
+            // 隐藏信封，显示打开的信封和信纸
+            $('#envelope').hide();
+            $('#openedEnvelope').show();
+            $('#letterPaper').show();
+
+            // 检查是否点击了两次
+            if (clickCount === 2) {
+                window.location.href = "new_file2.html"; // 跳转到新页面
+                clickCount = 0; // 重置点击计数
+            }
+        });
+    });
+    </script>
+</body>
+</html>
